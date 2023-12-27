@@ -11,6 +11,7 @@ import (
 	"path"
 	"regexp"
 	"strconv"
+	"time"
 
 	md "github.com/JohannesKaufmann/html-to-markdown"
 )
@@ -23,8 +24,8 @@ func main() {
 		token string
 	)
 
-	flag.IntVar(&day, "d", 0, "day number")
-	flag.IntVar(&year, "y", 0, "year number")
+	flag.IntVar(&day, "d", time.Now().Day(), "day number")
+	flag.IntVar(&year, "y", time.Now().Year(), "year number")
 	flag.StringVar(&token, "t", "", "session token")
 	flag.Parse()
 
