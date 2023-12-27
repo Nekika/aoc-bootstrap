@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/nekika/aoc-bootstrap/internal"
 	"github.com/nekika/aoc-bootstrap/internal/templates"
 	"io"
 	"net/http"
@@ -23,11 +24,7 @@ func main() {
 	day := 10
 
 	dayurl := fmt.Sprintf("https://adventofcode.com/%d/day/%d", year, day)
-	dayreq, err := http.NewRequest(http.MethodGet, dayurl, nil)
-	if err != nil {
-		panic(err)
-	}
-	dayreq.AddCookie(&http.Cookie{Name: "session", Value: token})
+	dayreq, err := internal.HttpGetWithSessionCookie(dayurl, token)
 	dayres, err := http.DefaultClient.Do(dayreq)
 	if err != nil {
 		panic(err)
@@ -48,11 +45,7 @@ func main() {
 	example := examplere.FindSubmatch(mainelem)[1]
 
 	inputurl := fmt.Sprintf("%s/input", dayurl)
-	inputreq, err := http.NewRequest("GET", inputurl, nil)
-	if err != nil {
-		panic(err)
-	}
-	inputreq.AddCookie(&http.Cookie{Name: "session", Value: token})
+	inputreq, err := internal.HttpGetWithSessionCookie(inputurl, token)
 	inputres, err := http.DefaultClient.Do(inputreq)
 	if err != nil {
 		panic(err)
