@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/nekika/aoc-bootstrap/internal"
 	"github.com/nekika/aoc-bootstrap/internal/templates"
@@ -15,13 +16,17 @@ import (
 )
 
 func main() {
-	var token string
-	fmt.Print("Token: ")
-	_, err := fmt.Scanln(&token)
+	var (
+		day  int
+		year int
 
-	year := 2023
+		token string
+	)
 
-	day := 10
+	flag.IntVar(&day, "d", 0, "day number")
+	flag.IntVar(&year, "y", 0, "year number")
+	flag.StringVar(&token, "t", "", "session token")
+	flag.Parse()
 
 	dayurl := fmt.Sprintf("https://adventofcode.com/%d/day/%d", year, day)
 	dayreq, err := internal.HttpGetWithSessionCookie(dayurl, token)
