@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/nekika/aoc-bootstrap/internal"
+	"github.com/nekika/aoc-bootstrap/internal/lang"
 	"github.com/nekika/aoc-bootstrap/internal/templates"
 	"io"
 	"net/http"
@@ -31,6 +32,12 @@ func main() {
 	flag.StringVar(&langalias, "l", "", "programming language alias")
 	flag.StringVar(&token, "t", "", "session token")
 	flag.Parse()
+
+	l := lang.FromAlias(langalias)
+	if l == -1 {
+		msg := fmt.Sprintf("alias %s is not a known alias to a supported programming language", langalias)
+		panic(msg)
+	}
 
 	if token == "" {
 		panic("token flag missing")
