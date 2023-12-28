@@ -29,6 +29,10 @@ func main() {
 	flag.StringVar(&token, "t", "", "session token")
 	flag.Parse()
 
+	if token == "" {
+		panic("token flag missing")
+	}
+
 	dayurl := fmt.Sprintf("https://adventofcode.com/%d/day/%d", year, day)
 	dayreq, err := internal.HttpGetWithSessionCookie(dayurl, token)
 	dayres, err := http.DefaultClient.Do(dayreq)
