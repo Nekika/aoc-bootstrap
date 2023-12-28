@@ -21,11 +21,14 @@ func main() {
 		day  int
 		year int
 
+		langalias string
+
 		token string
 	)
 
 	flag.IntVar(&day, "d", time.Now().Day(), "day number")
 	flag.IntVar(&year, "y", time.Now().Year(), "year number")
+	flag.StringVar(&langalias, "l", "", "programming language alias")
 	flag.StringVar(&token, "t", "", "session token")
 	flag.Parse()
 
