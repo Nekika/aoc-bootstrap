@@ -96,7 +96,8 @@ func main() {
 	}
 
 	dayfilename := fmt.Sprintf("%d.exs", day)
-	if err := os.WriteFile(path.Join(dirname, dayfilename), templates.DayFileElixir, 0o755); err != nil {
+	tmpl := templates.ForLanguage(l)
+	if err := os.WriteFile(path.Join(dirname, dayfilename), tmpl, 0o755); err != nil {
 		panic(err)
 	}
 
