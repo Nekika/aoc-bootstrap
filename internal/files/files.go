@@ -2,11 +2,11 @@ package files
 
 import (
 	"fmt"
-	"github.com/nekika/aoc-bootstrap/internal/templates"
 	"os"
 	"path"
 
 	"github.com/nekika/aoc-bootstrap/internal/lang"
+	"github.com/nekika/aoc-bootstrap/internal/templates"
 )
 
 func write(dst, name string, data []byte) error {

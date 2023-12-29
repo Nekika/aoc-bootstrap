@@ -2,6 +2,7 @@ package templates
 
 import (
 	_ "embed"
+
 	"github.com/nekika/aoc-bootstrap/internal/lang"
 )
 

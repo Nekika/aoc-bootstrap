@@ -3,9 +3,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/nekika/aoc-bootstrap/internal"
-	"github.com/nekika/aoc-bootstrap/internal/files"
-	"github.com/nekika/aoc-bootstrap/internal/lang"
 	"io"
 	"net/http"
 	"os"
@@ -14,6 +11,9 @@ import (
 	"time"
 
 	md "github.com/JohannesKaufmann/html-to-markdown"
+	"github.com/nekika/aoc-bootstrap/internal"
+	"github.com/nekika/aoc-bootstrap/internal/files"
+	"github.com/nekika/aoc-bootstrap/internal/lang"
 )
 
 func main() {
