@@ -4,12 +4,11 @@ import (
 	"flag"
 	"fmt"
 	"github.com/nekika/aoc-bootstrap/internal"
+	"github.com/nekika/aoc-bootstrap/internal/files"
 	"github.com/nekika/aoc-bootstrap/internal/lang"
-	"github.com/nekika/aoc-bootstrap/internal/templates"
 	"io"
 	"net/http"
 	"os"
-	"path"
 	"regexp"
 	"strconv"
 	"time"
@@ -81,28 +80,24 @@ func main() {
 	}
 
 	converter := md.NewConverter("", true, nil)
-
 	readme, err := converter.ConvertBytes(mainelem)
 	if err != nil {
 		panic(err)
 	}
 
-	if err := os.WriteFile(path.Join(dirname, "README.md"), readme, 0o755); err != nil {
+	if err := files.WriteDay(dirname, day, l); err != nil {
 		panic(err)
 	}
 
-	if err := os.WriteFile(path.Join(dirname, "example.txt"), example, 0o755); err != nil {
+	if err := files.WriteInput(dirname, input); err != nil {
 		panic(err)
 	}
 
-	dayfilename := fmt.Sprintf("%d.exs", day)
-	tmpl := templates.ForLanguage(l)
-	if err := os.WriteFile(path.Join(dirname, dayfilename), tmpl, 0o755); err != nil {
+	if err := files.WriteReadme(dirname, readme); err != nil {
 		panic(err)
 	}
 
-	inputfilename := "input.txt"
-	if err := os.WriteFile(path.Join(dirname, inputfilename), input, 0o755); err != nil {
+	if err := files.WriteExample(dirname, example); err != nil {
 		panic(err)
 	}
 }
